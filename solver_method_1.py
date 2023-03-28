@@ -38,4 +38,14 @@ def read_file(file_name: str) -> Grid:
     return grid
 
 def remove_possibilities(grid: Grid, row: int, col: int, value: int) -> None:
-    ...
+    n = grid[row][col].n
+    sqrt = int(n ** 0.5)
+    for i in range(n):
+        grid[row][i].remove_possibility(value)
+        grid[i][col].remove_possibility(value)
+    
+    start_row = (row // sqrt) * sqrt
+    start_col = (col // sqrt) * sqrt
+    for i in range(start_row, start_row + sqrt):
+        for j in range(start_col, start_col + sqrt):
+            grid[i][j].remove_possibility(value)

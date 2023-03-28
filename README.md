@@ -3,3 +3,8 @@ Hi, this is my CPSC 406, Algorithm Analysis, class project. I am working on this
 
 Non-builtin python library dependencies:
 - tabulate (`pip install tabulate`)
+
+To run each solve method:
+(Note, on windows use the `python` command and on linux, `python3`)
+- Solver Method 1
+    - python solver_method_1.py [SUDOKU_FILE]

@@ -49,3 +49,34 @@ def remove_possibilities(grid: Grid, row: int, col: int, value: int) -> None:
     for i in range(start_row, start_row + sqrt):
         for j in range(start_col, start_col + sqrt):
             grid[i][j].remove_possibility(value)
+
+def solve(grid: Grid) -> None:
+    all_cells = [cell for cell_row in grid for cell in cell_row]
+    all_cells.sort(key=lambda c: len(c.poss_vals))
+    while len(all_cells) > 0:
+        all_cells.sort(key=lambda c: len(c.poss_vals))
+        while len(all_cells) > 0 and len(all_cells[0].poss_vals) == 0:
+            all_cells.pop(0)
+        if len(all_cells) > 0 and len(all_cells[0].poss_vals) == 1:
+            value = all_cells[0].poss_vals.pop()
+            all_cells[0].setVal(value)
+            all_cells[0].remove_possibility(value)
+            remove_possibilities(grid, all_cells[0].row, all_cells[0].col,all_cells[0].getVal())
+            all_cells.pop(0)
+        else:
+            print("ERROR: No unique solution") # Still needs to be implemented if there are multiple solutions
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print("ERROR: No specified file to solve. Add it in the command line arguments")
+        exit()
+    try:
+        grid = read_file(sys.argv[1])
+    except:
+        print("ERROR: Invalid file")
+        exit()
+    print("Unsolved Grid: (Red indicates the originally provided numbers)")
+    print_grid(grid)
+    print("Solved Grid: (Red indicates the originally provided numbers)")
+    solve(grid)
+    print_grid(grid)

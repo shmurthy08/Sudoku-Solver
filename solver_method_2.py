@@ -2,7 +2,7 @@ import numpy as np
 from pulp import *
 
 
-class SudokuSolver:
+class SudokuSolver2:
     def __init__(self, filename):
            # Read the initial board from file
         self.board = []

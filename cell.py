@@ -19,7 +19,7 @@ class Cell:
     def getVal(self) -> int:
         return self._val
     
-    def setVal(self, value) -> None:
+    def setVal(self, value: int) -> None:
         if self.is_modifiable:
             self._val = value
             if len(self.poss_vals) == 1:
@@ -36,6 +36,7 @@ class Cell:
 
     def __str__(self) -> str:
         red = "\033[0;31m"
+        highlight = '\x1b[1;33m' + '\x1b[7m'
         reset = "\033[0m"
         if self._val == 0:
             return '•'
@@ -46,7 +47,7 @@ class Cell:
         
         # For debugging:
         
-        # return """\"val:%s, r:%s, c:%s%s\"""" % (red + str(self._val) + reset, self.row, self.col, ", " + str(self.poss_vals) if len(self.poss_vals) != 0 else "")
+        # return """\"val:%s, r:%s, c:%s%s\"""" % ((('' if self._val != 0 else highlight) if self.is_modifiable else red) + str(self._val) + reset, self.row, self.col, "\n" + str(self.poss_vals) if len(self.poss_vals) != 0 else "")
     
     def __repr__(self) -> str:
         return str(self)

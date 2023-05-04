@@ -8,7 +8,7 @@ class SudokuSolver2:
         self.board = []
         with open(filename, 'r') as f:
             lines = f.readlines()
-            for i in range(2, len(lines)):
+            for i in range(0, len(lines)):
                 row = list(lines[i].strip())
                 self.board.append(row)
 

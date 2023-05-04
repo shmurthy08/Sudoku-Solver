@@ -3,6 +3,8 @@ Hi, this is my CPSC 406, Algorithm Analysis, class project. I am working on this
 
 Non-builtin python library dependencies:
 - tabulate (`pip install tabulate`)
+- pulp (`pip install pulp`)
+- pygame (`pip install pygame`)
 
 To run each solve method:
 (Note, on windows use the `python` command and on linux, `python3`)

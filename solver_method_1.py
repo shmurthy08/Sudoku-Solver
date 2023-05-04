@@ -8,6 +8,7 @@ Grid = List[List[Cell]]
 class SudokuSolver1:
     def __init__(self, filename: str):
         self.grid = self.read_file(filename)
+        # self.num_stack_calls = 0
     
     def print_grid(self, grid: Grid) -> None:
         from tabulate import tabulate
@@ -43,6 +44,7 @@ class SudokuSolver1:
         return grid
 
     def remove_possibilities(self, grid: Grid, row: int, col: int, value: int) -> None:
+        # self.num_stack_calls += 1
         n = grid[row][col].n
         sqrt = int(n ** 0.5)
         for i in range(n):
@@ -56,6 +58,7 @@ class SudokuSolver1:
                 grid[i][j].remove_possibility(value)
 
     def find_unassigned_location(self, grid: Grid) -> Tuple[int, int]:
+        # self.num_stack_calls += 1
         for row in range(len(grid)):
             for col in range(len(grid[row])):
                 if grid[row][col].getVal() == 0:
@@ -63,6 +66,7 @@ class SudokuSolver1:
         return -1, -1
 
     def is_safe(self, grid: Grid, row: int, col: int, num: int) -> bool:
+        # self.num_stack_calls += 1
         if num in [grid[row][i].getVal() for i in range(len(grid))]:
             return False
 
@@ -80,6 +84,7 @@ class SudokuSolver1:
         return True
 
     def solve(self, grid: Grid) -> bool:
+        # self.num_stack_calls += 1
         row, col = self.find_unassigned_location(grid)
 
         if row == -1 and col == -1:

@@ -25,7 +25,7 @@ def gui_setup():
     tab_0 = pygame.Rect(5, 5, 165, 40)  
     tab_1 = pygame.Rect(175, 5, 168, 40)
     tab_2 = pygame.Rect(348, 5, 210, 40)
-    tab_3 = pygame.Rect(5, 60, 180, 40)
+    tab_3 = pygame.Rect(615, 5, 180, 40)
     # statistics_tab = pygame.Rect(563, 5, 115, 40)
 
     board_1 = None
@@ -134,14 +134,18 @@ def display_statistics(runtime_1, runtime_2):
     screen.blit(statistics_text_2, (50, 200))
 
 # statistics for the human method page
-def display_human_stats(runtime_1):
+def display_human_stats(runtime_1, stack_calls):
     statistics_text_1 = font.render(f'Runtime (Seconds): {runtime_1}', True, (255, 255, 255))
-    screen.blit(statistics_text_1, (5, 115))
+    stack_calls_1 = font.render(f'Number of Stack Calls: {stack_calls}', True, (255, 255, 255))
+    screen.blit(statistics_text_1, (5, 90))
+    screen.blit(stack_calls_1, (5, 115))
 
 # statistics for the logical programming method page
 def display_logic_stats(runtime_2):
     statistics_text_2 = font.render(f'Runtime (Seconds): {runtime_2}', True, (255, 255, 255))
-    screen.blit(statistics_text_2, (5, 115))
+    stack_calls_2 = font.render(f'Number of Stack Calls: N/A', True, (255, 255, 255))
+    screen.blit(statistics_text_2, (5, 90))
+    screen.blit(stack_calls_2, (5, 115))
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -159,7 +163,7 @@ if __name__ == '__main__':
     start_time = time.time()
     if solver1.solve(solver1.grid):
         end_time = time.time()
-        runtime_1 = round(end_time - start_time, 2)
+        runtime_1 = round(end_time - start_time, 3)
     else:
         print("ERROR: No solution")
 
@@ -168,7 +172,7 @@ if __name__ == '__main__':
     start_time = time.time()
     solver2_board = solver2.solve_puzzle()
     end_time = time.time()
-    runtime_2 = round(end_time - start_time, 2)
+    runtime_2 = round(end_time - start_time, 3)
 
     indices = board_highlight(solver1.grid)
     solver2_board = draw_highlight(solver2_board, indices)
@@ -198,7 +202,7 @@ if __name__ == '__main__':
                     initial = 1
                     screen.fill((0,0,0))
                     draw_tabs()
-                    display_human_stats(runtime_1)
+                    display_human_stats(runtime_1, solver1.num_stack_calls)
                     draw_board(solver1.grid)
                 # logic programming is pressed
                 elif tab_2.collidepoint(pos):
@@ -222,7 +226,7 @@ if __name__ == '__main__':
                     start_time = time.time()
                     if solver1.solve(solver1.grid):
                         end_time = time.time()
-                        runtime_1 = round(end_time - start_time, 2)
+                        runtime_1 = round(end_time - start_time, 3)
                     else:
                         print("ERROR: No solution")
 
@@ -231,7 +235,7 @@ if __name__ == '__main__':
                     start_time = time.time()
                     solver2_board = solver2.solve_puzzle()
                     end_time = time.time()
-                    runtime_2 = round(end_time - start_time, 2)
+                    runtime_2 = round(end_time - start_time, 3)
 
                     indices = board_highlight(solver1.grid)
                     solver2_board = draw_highlight(solver2_board, indices)

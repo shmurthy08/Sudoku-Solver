@@ -15,3 +15,5 @@ def generate():
     with open('sudoku_board.txt', 'w') as f:
         for row in board:
             f.write(''.join(row) + '\n')
+
+    return difficulty

@@ -2,17 +2,18 @@ import pygame
 import time
 import sys
 import textwrap
+import numpy as np
 from Generator import generate
 from solver_method_1 import SudokuSolver1
 from solver_method_2 import SudokuSolver2
 
 pygame.init()
 
-global screen_width, screen_height, screen, font, tab_0, tab_1, tab_2, tab_3, statistics_tab, board_1, board_2
+global screen_width, screen_height, screen, font, tab_0, tab_1, tab_2, tab_3, statistics_tab, board_1, board_2, difficulty
 
 # initialize display window size, tabs, boards
 def gui_setup():
-    global screen_width, screen_height, screen, font, tab_0, tab_1, tab_2, tab_3, statistics_tab, board_1, board_2
+    global screen_width, screen_height, screen, font, tab_0, tab_1, tab_2, tab_3, statistics_tab, board_1, board_2, difficulty
 
     screen_width = 800
     screen_height = 600
@@ -25,11 +26,15 @@ def gui_setup():
     tab_0 = pygame.Rect(5, 5, 165, 40)  
     tab_1 = pygame.Rect(175, 5, 168, 40)
     tab_2 = pygame.Rect(348, 5, 210, 40)
-    tab_3 = pygame.Rect(615, 5, 180, 40)
-    # statistics_tab = pygame.Rect(563, 5, 115, 40)
+    
+    statistics_tab = pygame.Rect(563, 5, 115, 40)
+
+    tab_3 = pygame.Rect(610, 545, 180, 40)
 
     board_1 = None
     board_2 = None
+
+    difficulty = None
 
 def draw_intro():
     rules_rect = pygame.Rect(83, 207, 635, 185)
@@ -58,27 +63,27 @@ def draw_tabs():
     pygame.draw.rect(screen, shadow_color, tab_1.move(shadow_offset, shadow_offset))
     pygame.draw.rect(screen, shadow_color, tab_2.move(shadow_offset, shadow_offset))
     pygame.draw.rect(screen, shadow_color, tab_3.move(shadow_offset, shadow_offset))
-    # pygame.draw.rect(screen, shadow_color, statistics_tab.move(shadow_offset, shadow_offset))
+    pygame.draw.rect(screen, shadow_color, statistics_tab.move(shadow_offset, shadow_offset))
     
     # draw the tabs
     pygame.draw.rect(screen, (255, 255, 255), tab_0)
     pygame.draw.rect(screen, (255, 255, 255), tab_1)
     pygame.draw.rect(screen, (255, 255, 255), tab_2)
     pygame.draw.rect(screen, (255, 255, 255), tab_3)
-    # pygame.draw.rect(screen, (255, 255, 255), statistics_tab)
+    pygame.draw.rect(screen, (255, 255, 255), statistics_tab)
 
     # tab labels
     tab_0_text = font.render("Original Board", True, (0, 0, 0))
     tab_1_text = font.render("Human Method", True, (0, 0, 0))
     tab_2_text = font.render("Logic Programming", True, (0, 0, 0))
     tab_3_text = font.render("Generate Board", True, (0, 0, 0))
-    # statistics_tab_text = font.render("Statistics", True, (0, 0, 0))
+    statistics_tab_text = font.render("Statistics", True, (0, 0, 0))
 
     screen.blit(tab_0_text, (tab_0.x + 10, tab_0.y + 10))
     screen.blit(tab_1_text, (tab_1.x + 10, tab_1.y + 10))
     screen.blit(tab_2_text, (tab_2.x + 10, tab_2.y + 10))
     screen.blit(tab_3_text, (tab_3.x + 10, tab_3.y + 10))
-    # screen.blit(statistics_tab_text, (statistics_tab.x + 10, statistics_tab.y + 10))
+    screen.blit(statistics_tab_text, (statistics_tab.x + 10, statistics_tab.y + 10))
 
 # draw board given origin position (x,y) [top-left corner of the screen]
 def draw_board(board, x=7, y=140):
@@ -126,12 +131,41 @@ def draw_highlight(board, indices):
                 board[i][j] = str(board[i][j]) + "0;31m"
     return board
 
+# calculates average runtime for both solvers
+def performance(solver1, solver2, iterations = 10):
+    solver1_runtime = []
+    solver2_runtime = []
+    for i in range(iterations):
+        runtime_1 = 0
+        start_time = time.time()
+        if solver1.solve(solver1.grid):
+            end_time = time.time()
+            runtime_1 = end_time - start_time
+        else:
+            print("ERROR: No solution")
+
+        # run solver 2
+        runtime_2 = 0
+        start_time = time.time()
+        solver2_board = solver2.solve_puzzle()
+        end_time = time.time()
+        runtime_2 = end_time - start_time
+
+        solver1_runtime.append(runtime_1)
+        solver2_runtime.append(runtime_2)
+    return [round(np.average(solver1_runtime),6), round(np.average(solver2_runtime),6)]
+
 # statistics for the statistics page
-def display_statistics(runtime_1, runtime_2):
-    statistics_text_1 = font.render(f'Human Method (Seconds): {runtime_1}', True, (255, 255, 255))
-    statistics_text_2 = font.render(f'Logical Programming (Seconds): {runtime_2}', True, (255, 255, 255))
-    screen.blit(statistics_text_1, (50, 150))
-    screen.blit(statistics_text_2, (50, 200))
+def display_statistics(runtime_1, runtime_2, iterations, difficulty):
+    statistics_difficulty = font.render(f'Board Difficulty: {difficulty}', True, (255,255,255))
+    statistics_iterations = font.render(f'Iterations: {iterations}', True, (255,255,255))
+    statistics_text_1 = font.render(f'Human Method Average Runtime (Seconds): {runtime_1}', True, (255, 255, 255))
+    statistics_text_2 = font.render(f'Logical Programming Average Runtime (Seconds): {runtime_2}', True, (255, 255, 255))
+    
+    screen.blit(statistics_difficulty, (50, 100))
+    screen.blit(statistics_iterations, (50, 150))
+    screen.blit(statistics_text_1, (50, 200))
+    screen.blit(statistics_text_2, (50, 250))
 
 # statistics for the human method page
 def display_human_stats(runtime_1, stack_calls):
@@ -177,6 +211,9 @@ if __name__ == '__main__':
     indices = board_highlight(solver1.grid)
     solver2_board = draw_highlight(solver2_board, indices)
 
+    iterations = 10
+    performance_list = performance(solver1, solver2, iterations)
+
     # initialize gui
     gui_setup()
     # set event loop for gui
@@ -217,7 +254,7 @@ if __name__ == '__main__':
                     screen.fill((0,0,0))
                     draw_tabs()
                     
-                    generate()
+                    difficulty = generate()
 
                     solver1 = SudokuSolver1("sudoku_board.txt")
                     solver2 = SudokuSolver2("sudoku_board.txt")
@@ -240,11 +277,13 @@ if __name__ == '__main__':
                     indices = board_highlight(solver1.grid)
                     solver2_board = draw_highlight(solver2_board, indices)
 
+                    performance_list = performance(solver1, solver2, iterations)
+
                     draw_board(solver2.board)
                 # stastics tab is pressed
-                # elif statistics_tab.collidepoint(pos):
-                #     initial = 1
-                #     screen.fill((0,0,0))
-                #     draw_tabs()
-                #     display_statistics(str(runtime_1), str(runtime_2))
+                elif statistics_tab.collidepoint(pos):
+                    initial = 1
+                    screen.fill((0,0,0))
+                    draw_tabs()
+                    display_statistics(str(performance_list[0]), str(performance_list[1]), iterations, difficulty)
         pygame.display.update()

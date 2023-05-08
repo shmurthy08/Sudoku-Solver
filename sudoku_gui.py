@@ -115,6 +115,8 @@ def draw_board(board, x=7, y=140):
                     # color solution numbers in red
                     text = font.render(str(board[i][j]), True, (255, 114, 118))
                     board[i][j] = str(board[i][j]) + "0;31m"
+                elif str(board[i][j]) == '.':
+                    text = font.render('•', True, (255,255,255))
                 else:
                     text = font.render(str(board[i][j]), True, (255, 255, 255))
                 screen.blit(text, (x + j * 50 + 15, y + i * 50 + 15))

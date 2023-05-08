@@ -167,8 +167,8 @@ def performance(solver1, solver2, iterations = 10):
 
         solver1_runtime.append(runtime_1)
         solver2_runtime.append(runtime_2)
-    print(solver1_runtime)
-    print(solver2_runtime)
+    # print(solver1_runtime)
+    # print(solver2_runtime)
     return [round(np.average(solver1_runtime),7), round(np.average(solver2_runtime),7)]
 
 # statistics for the statistics page

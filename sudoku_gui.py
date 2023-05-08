@@ -54,7 +54,7 @@ def draw_intro():
     pygame.display.update()
 
 # draw tabs and format them
-def draw_tabs():
+def draw_tabs(selected_tab):
     shadow_offset = 4
     shadow_color = (211, 211, 211)
     
@@ -64,13 +64,27 @@ def draw_tabs():
     pygame.draw.rect(screen, shadow_color, tab_2.move(shadow_offset, shadow_offset))
     pygame.draw.rect(screen, shadow_color, tab_3.move(shadow_offset, shadow_offset))
     pygame.draw.rect(screen, shadow_color, statistics_tab.move(shadow_offset, shadow_offset))
+
+    color = (255, 255, 255)
     
     # draw the tabs
-    pygame.draw.rect(screen, (255, 255, 255), tab_0)
-    pygame.draw.rect(screen, (255, 255, 255), tab_1)
-    pygame.draw.rect(screen, (255, 255, 255), tab_2)
-    pygame.draw.rect(screen, (255, 255, 255), tab_3)
-    pygame.draw.rect(screen, (255, 255, 255), statistics_tab)
+    pygame.draw.rect(screen, color, tab_0)
+    pygame.draw.rect(screen, color, tab_1)
+    pygame.draw.rect(screen, color, tab_2)
+    pygame.draw.rect(screen, color, tab_3)
+    pygame.draw.rect(screen, color, statistics_tab)
+
+    select_color = (200,200,200)
+    if selected_tab == 0:
+        pygame.draw.rect(screen, select_color, tab_0)
+    elif selected_tab == 1:
+        pygame.draw.rect(screen, select_color, tab_1)
+    elif selected_tab == 2:
+        pygame.draw.rect(screen, select_color, tab_2)
+    elif selected_tab == 3:
+        pygame.draw.rect(screen, select_color, tab_3)
+    elif selected_tab == 4:
+        pygame.draw.rect(screen, select_color, statistics_tab)
 
     # tab labels
     tab_0_text = font.render("Original Board", True, (0, 0, 0))
@@ -153,6 +167,8 @@ def performance(solver1, solver2, iterations = 10):
 
         solver1_runtime.append(runtime_1)
         solver2_runtime.append(runtime_2)
+    print(solver1_runtime)
+    print(solver2_runtime)
     return [round(np.average(solver1_runtime),7), round(np.average(solver2_runtime),7)]
 
 # statistics for the statistics page
@@ -222,7 +238,7 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             if initial == 0:
                 draw_intro()
-            draw_tabs()
+            draw_tabs(None)
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
@@ -232,27 +248,27 @@ if __name__ == '__main__':
                 if tab_0.collidepoint(pos):
                     initial = 1
                     screen.fill((0,0,0))
-                    draw_tabs()
+                    draw_tabs(0)
                     draw_board(solver2.board)
                 # if "human method" tab is pressed
                 elif tab_1.collidepoint(pos):
                     initial = 1
                     screen.fill((0,0,0))
-                    draw_tabs()
+                    draw_tabs(1)
                     display_human_stats(runtime_1, solver1.num_stack_calls)
                     draw_board(solver1.grid)
                 # logic programming is pressed
                 elif tab_2.collidepoint(pos):
                     initial = 1
                     screen.fill((0,0,0))
-                    draw_tabs()
+                    draw_tabs(2)
                     display_logic_stats(runtime_2)
                     draw_board(solver2_board)
                 # generate board
                 elif tab_3.collidepoint(pos):
                     initial = 1
                     screen.fill((0,0,0))
-                    draw_tabs()
+                    draw_tabs(3)
                     
                     difficulty = generate()
 
@@ -284,6 +300,6 @@ if __name__ == '__main__':
                 elif statistics_tab.collidepoint(pos):
                     initial = 1
                     screen.fill((0,0,0))
-                    draw_tabs()
+                    draw_tabs(4)
                     display_statistics(str(performance_list[0]), str(performance_list[1]), iterations, difficulty)
         pygame.display.update()

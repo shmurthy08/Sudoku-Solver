@@ -64,14 +64,33 @@ class SudokuSolver1:
     def find_unassigned_location(self, grid: Grid) -> Tuple[int, int]:
         self.num_stack_calls += 1
         
-        # find where the cell's value is 0
+        cell_row, cell_col = -1, -1
+        # find first empty cell to compare min possibilities to
         for row in range(len(grid)):
             for col in range(len(grid[row])):
                 if grid[row][col].getVal() == 0:
-                    return row, col
+                    cell_row, cell_col = row, col
+        
+        #fully filled
+        if cell_row == -1 and cell_col == -1:
+            return cell_row, cell_col
+        
+        # find where the cell's value is 0
+        for row in range(len(grid)):
+            for col in range(len(grid[row])):
+                curr_cell = grid[row][col]
+                if curr_cell.getVal() == 0: # empty cell
+                    if len(curr_cell.poss_vals) == 1: # guaranteed only one value
+                        guaranteed_val = curr_cell.poss_vals.pop()
+                        self.remove_possibilities(grid, row, col, guaranteed_val)
+                        curr_cell.poss_vals.add(guaranteed_val)
+                        return row, col
+                    elif len(curr_cell.poss_vals) < len(grid[cell_row][cell_col].poss_vals):
+                        # otherwise, has less possibilities
+                        cell_row, cell_col = row, col
         
         # all cells are filled in
-        return -1, -1
+        return cell_row, cell_col
 
     def is_safe(self, grid: Grid, row: int, col: int, num: int) -> bool:
         self.num_stack_calls += 1

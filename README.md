@@ -1,5 +1,14 @@
+
 # Sudoku-Solver
 Hi, this is our CPSC 406, Algorithm Analysis, class project. The project members include Shree Murthy (me), Rahul Sura and Dylan Inafuku. Our goal is to create a sudoku solver with two types of solving methods to learn more about algorithms. See the link to our presentation [here](https://docs.google.com/presentation/d/1JnC8Kd4kijPLFjV1sCchN6WeVRiDiY6CYxrkNO_E51w/edit#slide=id.g24023e6062c_1_33267)
+
+## Personal Information:
+- Shree Murthy: shmurthy@chapman.edu
+- Rahul Sura: sura@chapman.edu
+- Dylan Inafuku: dinafuku@chapman.edu
+- Class: CPSC 406 - 02
+- Instructor: Alexander Kurz
+- Institution: Chapman University
 
 ## Introduction: 
 - Sudoku is a widely played puzzle game and we learned about it during our class discussions regarding the NP-Complete problem family discussed in class, including SAT-solvers. We sought to create a program that aims to be a companion for beginners. Essentially, the goal was that if a user gave a board that they are currently working on they can see how their solution matches up with the solutions of our methods. Furthermore, we wanted to explore how we can take the human thought process of solving sudoku and use code as a way to output that thought process. 
@@ -133,10 +142,14 @@ Extreme Avg:
 - At the end of the project everything we set out to achieve was completed in a timely manner and everything works as intended. 
 
 ### Results and Achievements:
-- Human Solver (solver_method_1.py) outperformed the Logic Programming Solver (solver_method_2.py) most of the time
+- Human Solver outperformed the Logic Programming solver (most of the time)
 - For some of the more complicated puzzles (like ‘extreme’), Human Solver was significantly slower. Logic programming is more consistent in terms of how long it takes to solve (less variability in number of seconds)
 - In line with literature review results
 
+### Other ways to test?
+- For sudoku there really isn’t another way to test it aside from the fact that there is a valid solution that is inline with the constraints of sudoku
+- Also, to test the programs themselves to see which is better, the best thing we thought of was to use Python’s time package to figure out how long the program takes to run
+- If there are other ways to test please inform us via a Git Issue, pull request, or by other means.
 
 ### Work Divided:
 
@@ -150,3 +163,6 @@ Extreme Avg:
 
 ### Helpful Links:
 - [Learn about PuLP package](https://data-flair.training/blogs/python-logic-programming/)
+- [PuLP Documentation](https://coin-or.github.io/pulp/)
+- [Literature Review #1](http://www.diva-portal.org/smash/get/diva2:811020/FULLTEXT01.pdf)
+- [Literature Review #2](https://www.csc.kth.se/utbildning/kth/kurser/DD143X/dkand13/Group1Vahid/report/Aref-Fiorella-KexJobb-sist.pdf)

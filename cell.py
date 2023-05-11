@@ -25,9 +25,9 @@ class Cell:
         return self._val
 
     def setVal(self, value: int) -> None:
-        if self.is_modifiable:
+        if self.is_modifiable: # Not a preset cell part of the base board
             self._val = value
-            if len(self.poss_vals) == 1:
+            if len(self.poss_vals) == 1: # guaranteed cell
                 self.poss_vals.clear()
         else:
             raise AttributeError("ERROR: Value is not writeable")
@@ -52,9 +52,11 @@ class Cell:
         else:
             return red + str(self._val) + reset  # Display the value of a non-modifiable cell in red
 
-        # For debugging purposes, you can uncomment the following lines:
+
         # This will display additional information about the cell, including its possible values
         # if you are using this class to develop your own Sudoku Solver(s).
+        # For debugging purposes, you can uncomment the following line
+        
         # return """\"val:%s, r:%s, c:%s%s\"""" % ((('' if self._val != 0 else highlight) if self.is_modifiable else red) + str(self._val) + reset, self.row, self.col, "\n" + str(self.poss_vals) if len(self.poss_vals) != 0 else "")
 
     def __repr__(self) -> str:

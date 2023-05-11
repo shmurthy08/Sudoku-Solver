@@ -1,8 +1,9 @@
 import numpy as np
 from pulp import *
+from solver_method_1 import SudokuSolver1
+from tabulate import tabulate
 
-
-class SudokuSolver2:
+class SudokuSolver2_4x4:
     def __init__(self, filename):
         # Read the initial board from file
         self.board = []
@@ -66,3 +67,26 @@ class SudokuSolver2:
 
         # Print the solution
         return solution
+
+
+# main just for testing 4x4
+if __name__ == '__main__':
+    if len(sys.argv) < 2: # command line argument for file
+        print("ERROR: No specified file to solve. Add it in the command line arguments")
+        exit()
+    solver1 = SudokuSolver1(sys.argv[1])
+    
+    # Print method 1
+    print("Method 1 (Backtracking)")
+    print("Unsolved Grid: (Red indicates the originally provided numbers)")
+    print(tabulate(solver1.grid, tablefmt='grid'))
+    print("Solved Grid: (Red indicates the originally provided numbers)")
+    if solver1.solve(solver1.grid): # if there is a solution
+        print(tabulate(solver1.grid, tablefmt='grid')) # print the solution
+    else:
+        print("No solution")
+    
+    # Print method 2
+    solver2 = SudokuSolver2_4x4(sys.argv[1])
+    print("Method 2 (Logic Programming) solution")
+    print(tabulate(solver2.solve_puzzle(), tablefmt='grid'))

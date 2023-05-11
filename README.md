@@ -32,7 +32,7 @@ Hi, this is our CPSC 406, Algorithm Analysis, class project. The project members
 	- There are **two sudoku solvers** (solver_method_1.py and solver_method_2.py). Method 1 represents the human solver method (taking the human thought process and making it into code). Method 2 represents the computer method because Logic Programming takes all rules and throws them into a box to test and find how to solve the problem, so the user doesn’t know what the thought process of the computer is. 
 	- One cell class: this interacts with solver_method_1.py to keep track of all cells that method 1 is trying to solve. 
 	- Generator.py: this is used to call the sudoku api and generate a brand new board that can be used by the program
-    - there is a GUI component that interacts with the two solver methods to beautifully output the solutions to the PyGame GUI window. Also interacts with Generator.py to generate brand new boards that can be solved.
+    - There is a GUI component that interacts with the two solver methods to beautifully output the solutions to the PyGame GUI window. Also interacts with Generator.py to generate brand new boards that can be solved.
 	
 
 

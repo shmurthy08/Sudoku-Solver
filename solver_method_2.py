@@ -4,7 +4,7 @@ from pulp import *
 
 class SudokuSolver2:
     def __init__(self, filename):
-           # Read the initial board from file
+        # Read the initial board from file
         self.board = []
         with open(filename, 'r') as f:
             lines = f.readlines()
@@ -51,11 +51,11 @@ class SudokuSolver2:
                     k = int(self.board[i][j])
                     prob += choices[i][j][k] == 1
 
+        # Doesn't output any information to terminal because everything is visible in GUI
         LpSolverDefault.msg = 0
         # Solve the problem
         prob.solve()
 
-        # LpSolverDefault.msg = 1
 
         # Extract the solution from the variables
         solution = np.zeros((9, 9), dtype=int)
@@ -66,5 +66,4 @@ class SudokuSolver2:
                         solution[i][j] = k
 
         # Print the solution
-        # print(solution)
         return solution

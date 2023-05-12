@@ -11,7 +11,7 @@ Hi, this is our CPSC 406, Algorithm Analysis, class project. The project members
 - Institution: Chapman University
 
 ## Introduction: 
-- Sudoku is a widely played puzzle game and we learned about it during our class discussions regarding the NP-Complete problem family discussed in class, including SAT-solvers. We sought to create a program that aims to be a companion for beginners. Essentially, the goal was that if a user gave a board that they are currently working on they can see how their solution matches up with the solutions of our methods. Furthermore, we wanted to explore how we can take the human thought process of solving sudoku and use code as a way to output that thought process. 
+Sudoku is a widely played puzzle game and we learned about it during our class discussions regarding the NP-Complete problem family discussed in class, including SAT-solvers. We sought to create a program that aims to be a companion for beginners. Essentially, the goal was that if a user gave a board that they are currently working on they can see how their solution matches up with the solutions of our methods. Furthermore, we wanted to explore how we can take the human thought process of solving sudoku and use code as a way to output that thought process. 
 
 ## Literature Review:
 ### Literature Review 1:
@@ -19,6 +19,12 @@ In this literature review, an algorithm analysis was conducted on two Sudoku sol
 
 ### Literature Review 2:
 Two college students conducted a complexity/algorithm analysis on several Sudoku solving algorithms and compared them to one another. The three algorithms that they tested consisted of the backtracking algorithm, rule based algorithm, and the constraint algorithm. The backtracking algorithm is similar to our human method algorithm as our human method uses a form of backtracking to emulate a human thought process. The rule based algorithm implements a collection of different solver methods and uses them in conjunction. Finally, the constraint algorithm is similar to our logic programming method since it uses logic programming to outline the definitions and rules of Sudoku to reach a solution. In this literature review, the students presented their results in the form of a graph comparing each of the three solvers to their respective runtime for all board difficulties. Based on their testing, backtracking was the most efficient algorithm, rule based was a little less efficient than backtracking, and the constraint algorithm was the least efficient and had the longest runtime. After we completed our algorithms and conducted algorithm analysis, our results in terms of runtime matched that of this literature review's results. Our logic programming algorithm noticeably took the longest in terms of runtime for the sudoku boards, and our human method was the most efficient in terms of runtime, which is the same as the results that the college students gathered.
+
+### Timeline:
+- Brainstorming (weeks 1-3): Discussion of Board Generator finding articles for literature review
+- Initial Development (weeks 4-6): Building solvers for 4x4 sudoku board
+- Scaling (weeks 7-10): Scaling the solvers to solve 9x9 sudoku boards
+- Post-Production (weeks 11-14): Developing a GUI to display boards and creating presentation
 
 ### To run the gui:
 (Note, on windows use the `python` command and on linux, `python3`)
@@ -108,11 +114,6 @@ Conclusion: In summary, the Cell class mainly implements data structures, such a
 
 
 ```
-### Timeline:
-- Brainstorming (weeks 1-3): Discussion of Board Generator finding articles for literature review
-- Initial Development (weeks 4-6): Building solvers for 4x4 sudoku board
-- Scaling (weeks 7-10): Scaling the solvers to solve 9x9 sudoku boards
-- Post-Production (weeks 11-14): Developing a GUI to display boards and creating presentation
 
 ### Changes to plans?
 - We didn’t have any changes to the plan that swayed us to adjust our entire project

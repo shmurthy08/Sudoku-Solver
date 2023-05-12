@@ -154,10 +154,11 @@ Extreme Avg:
 - For some of the more complicated puzzles (like ‘extreme’), Human Solver was significantly slower. Logic programming is more consistent in terms of how long it takes to solve (less variability in number of seconds)
 - In line with literature review results
 
-### Other ways to test?
-- For sudoku there really isn’t another way to test it aside from the fact that there is a valid solution that is inline with the constraints of sudoku
-- Also, to test the programs themselves to see which is better, the best thing we thought of was to use Python’s time package to figure out how long the program takes to run
-- If there are other ways to test please inform us via a Git Issue, pull request, or by other means.
+### Testing methods
+- Sudoku is a puzzle that really only has a few rules for the puzzle to be fully solved. Hence, other than using a Sudoku board validater that takes those rules into account, there isn’t any other way to perform a test that both methods are working correctly, just that the end result is correct or incorrect.
+- It's also important to note that if you feed in an invalid Sudoku base text file that already violates the constraints of Sudoku (like two of the same number in the same row), the two solvers will still try its best to solve the board to the best of its ability, but since there is no way to fully solve it, the filled in numbers will not be accurate. Of course, we would hope that people would use the program to actually solve a board and not to break it.
+- Also, to test the programs themselves to see which is better, the best thing we thought of was to use Python’s time package to figure out how long the program takes to run. We also compared the runtime efficiencies to determine which method generally outperforms the other at each board difficulty level (easy, medium, hard, extreme).
+- If there are other ways to test please inform us via a Git Issue, pull request, or by any other means.
 
 ### Work Divided:
 

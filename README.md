@@ -1,6 +1,6 @@
 
 # Sudoku-Solver
-Hi, this is our CPSC 406, Algorithm Analysis, class project. The project members include Shree Murthy (me), Rahul Sura and Dylan Inafuku. Our goal is to create a sudoku solver with two types of solving methods to learn more about algorithms. See the link to our presentation [here](https://docs.google.com/presentation/d/1JnC8Kd4kijPLFjV1sCchN6WeVRiDiY6CYxrkNO_E51w/edit#slide=id.g24023e6062c_1_33267)
+Hi, this is our CPSC 406, Algorithm Analysis, class project. The project members include Shree Murthy (me), Rahul Sura and Dylan Inafuku. Our goal is to create a sudoku solver with two types of solving methods to learn more about algorithms. See the link to our [presentation](https://docs.google.com/presentation/d/1JnC8Kd4kijPLFjV1sCchN6WeVRiDiY6CYxrkNO_E51w/edit#slide=id.g24023e6062c_1_33267)
 
 ## Personal Information:
 - Shree Murthy: shmurthy@chapman.edu
@@ -40,7 +40,7 @@ Two college students conducted a complexity/algorithm analysis on several Sudoku
 
 ### Documentation:
 - Program was developed using python and the dependencies listed the previous section
-- A sudoku api [here] (https://sudoku-api.vercel.app/) was used to create an unlimited number of sudoku boards of varying difficulties
+- A [sudoku api](https://sudoku-api.vercel.app/) was used to create an unlimited number of sudoku boards of varying difficulties
 - Components:
 	- There are **two sudoku solvers** (solver_method_1.py and solver_method_2.py). Method 1 represents the human solver method (taking the human thought process and making it into code). Method 2 represents the computer method because Logic Programming takes all rules and throws them into a box to test and find how to solve the problem, so the user doesn’t know what the thought process of the computer is. 
 	- One cell class: this interacts with solver_method_1.py to keep track of all cells that method 1 is trying to solve. 

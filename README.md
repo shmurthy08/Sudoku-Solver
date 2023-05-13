@@ -11,7 +11,7 @@ Hi, this is our CPSC 406, Algorithm Analysis, class project. The project members
 - Institution: Chapman University
 
 ## Introduction: 
-Sudoku is a widely played puzzle game and we learned about it during our class discussions regarding the NP-Complete problem family discussed in class, including SAT-solvers. We sought to create a program that aims to be a companion for beginners. Essentially, the goal was that if a user gave a board that they are currently working on they can see how their solution matches up with the solutions of our methods. Furthermore, we wanted to explore how we can take the human thought process of solving sudoku and use code as a way to output that thought process. 
+Sudoku is a widely played puzzle game and we learned about it during our class discussions regarding the NP-Complete problem family, including SAT-solvers. We sought to create a program that aims to be a companion for beginners. Essentially, the goal was that if a user gave a board that they are currently working on they can see how their solution matches up with the solutions of our methods. Furthermore, we wanted to explore how we can take the human thought process of solving sudoku and use code as a way to output that thought process. 
 
 ## Literature Review:
 ### [Literature Review #1](http://www.diva-portal.org/smash/get/diva2:811020/FULLTEXT01.pdf):

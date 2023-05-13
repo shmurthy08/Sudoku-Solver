@@ -173,5 +173,5 @@ Extreme Avg:
 ### Helpful Links:
 - [Learn about PuLP package](https://data-flair.training/blogs/python-logic-programming/)
 - [PuLP Documentation](https://coin-or.github.io/pulp/)
-- [Literature Review #1](http://www.diva-portal.org/smash/get/diva2:811020/FULLTEXT01.pdf)
-- [Literature Review #2](https://www.csc.kth.se/utbildning/kth/kurser/DD143X/dkand13/Group1Vahid/report/Aref-Fiorella-KexJobb-sist.pdf)
+- [Literature Review #1](https://www.csc.kth.se/utbildning/kth/kurser/DD143X/dkand13/Group1Vahid/report/Aref-Fiorella-KexJobb-sist.pdf)
+- [Literature Review #2](http://www.diva-portal.org/smash/get/diva2:811020/FULLTEXT01.pdf)

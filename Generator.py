@@ -1,6 +1,8 @@
 import requests
 from tabulate import tabulate
 
+generated_file_name = 'sudoku_board.txt'
+
 def generate():
     # Send a GET request to the Sudoku API to retrieve puzzle data
     response = requests.get('https://sudoku-api.vercel.app/api/dosuku?query={newboard(limit:1){grids{value,solution,difficulty}}}')
@@ -18,9 +20,12 @@ def generate():
     table = tabulate(board, tablefmt='plain')
 
     # Write the board into a text file named 'sudoku_board.txt'
-    with open('sudoku_board.txt', 'w') as f:
+    with open(generated_file_name, 'w') as f:
         for row in board:
             f.write(''.join(row) + '\n')
 
     # Return the difficulty level
     return difficulty
+
+if __name__ == '__main__':
+    print(f"New board generated at '{generated_file_name}' with {generate()} difficulty")

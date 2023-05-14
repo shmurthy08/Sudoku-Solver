@@ -29,8 +29,9 @@ Two college students conducted a complexity/algorithm analysis on several Sudoku
 ### To run the gui:
 (Note, on windows use the `python` command and on linux, `python3`)
 - `python sudoku_gui.py [SUDOKU_FILE]`
-- To run with sample boards, click the `Generate Board` button. It will write over 
+- To run with sample boards, click the `Generate Board` button when running the GUI. It will write over 
 `sudoku_board.txt`
+	- You can also run `python Generator.py` to generate the board as well if you choose to do so, but this will not auto update the GUI
 
 ### Non-builtin python library dependencies:
 - tabulate (`pip install tabulate`)

@@ -1,4 +1,5 @@
 import numpy as np
+from time import time
 from pulp import *
 from solver_method_1 import SudokuSolver1
 from tabulate import tabulate
@@ -81,12 +82,19 @@ if __name__ == '__main__':
     print("Unsolved Grid: (Red indicates the originally provided numbers)")
     print(tabulate(solver1.grid, tablefmt='grid'))
     print("Solved Grid: (Red indicates the originally provided numbers)")
+    sovler1_start_time = time()
     if solver1.solve(solver1.grid): # if there is a solution
+        sovler1_end_time = time()
         print(tabulate(solver1.grid, tablefmt='grid')) # print the solution
+        print(f"Took {sovler1_end_time - sovler1_start_time} seconds to solve")
     else:
         print("No solution")
     
     # Print method 2
     solver2 = SudokuSolver2_4x4(sys.argv[1])
     print("Method 2 (Logic Programming) solution")
-    print(tabulate(solver2.solve_puzzle(), tablefmt='grid'))
+    sovler2_start_time = time()
+    end_soln = solver2.solve_puzzle()
+    sovler2_end_time = time()
+    print(tabulate(end_soln, tablefmt='grid'))
+    print(f"Took {sovler2_end_time - sovler2_start_time} seconds to solve")
